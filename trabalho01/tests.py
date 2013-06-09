@@ -1,21 +1,25 @@
 import unittest
-from romenia_map import ROMENIA
-from bfs import BFS
 from dfs import DFS
-from custo import CustoSearch
+from romenia_map import ROMENIA
 
-class TestSearchAlgoritms(unittest.TestCase):
-    def test_busca_em_profundidade_success(self):
-        dfs = DFS(ROMENIA, start='Arad')
-        self.assertEqual('Bucharest', dfs.search('Bucharest'))
+class TestDepthFirstSearch(unittest.TestCase):
 
-    def test_busca_em_largura_success(self):
-        bfs = BFS(ROMENIA, start='Arad')
-        self.assertEqual('Bucharest', bfs.search('Bucharest'))
+    def setUp(self):
+        self.dfs = DFS(ROMENIA, start='Arad')
 
-    def test_busca_de_custo_uniforme_success(self):
-        custo = CustoSearch(ROMENIA, start='Arad')
-        self.assertEqual('Bucharest', custo.search('Bucharest'))
+    def test_dfs_search_success(self):
+        self.assertEqual('Bucharest', self.dfs.search('Bucharest'))
+
+    def test_get_path_success(self):
+        path_expected = ['Arad', 'Sibiu', 'Rimnicu Vilcea', 'Pitesti',
+                        'Craiova', 'Dobreta', 'Mehadia', 'Lugoj', 'Timisoara']
+        self.dfs.search('Bucharest')
+        self.assertEqual(path_expected, self.dfs.get_path())
+
+    def test_get_cost_success(self):
+        self.dfs.search('Bucharest')
+        self.assertEqual(9, self.dfs.cost())
+
 
 if __name__ == '__main__':
     unittest.main()
