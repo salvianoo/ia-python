@@ -3,31 +3,42 @@ class DFS(object):
         self.graph = graph
         self.start = start
         self.stack = []
-        self.visited = dict((e, False) for e in graph) # no node visited yet
+        self.path = []
+        self.visited = dict((e, False) for e in graph)
 
-    def push(self, node):
-        self.stack.append(node)
+    def get_path(self):
+        return self.path
 
-    def pop(self):
-        return self.stack.pop()
-
-    def node_not_visited(self, node):
-        return not self.visited[node]
-
-    def neighbours(self, node):
-        return self.graph[node]
-
-    def visit(self, node):
-        self.visited[node] = True
+    def cost(self):
+        return len(self.path)
 
     def search(self, target):
-        self.push(self.start)
+        self._push(self.start)
         while self.stack:
-            node = self.pop()
+            node = self._pop()
             if node == target:
                 return node
-            if self.node_not_visited(node):
-                self.visit(node)
-                for unvisited in self.neighbours(node):
-                    self.push(unvisited)
+            if self._node_not_visited(node):
+                self._visit(node)
+                self._add_path(node)
+                for unvisited in self._neighbours(node):
+                    self._push(unvisited)
         return '%s Not Found' % target
+
+    def _push(self, node):
+        self.stack.append(node)
+
+    def _pop(self):
+        return self.stack.pop()
+
+    def _add_path(self, node):
+        self.path.append(node)
+
+    def _node_not_visited(self, node):
+        return not self.visited[node]
+
+    def _neighbours(self, node):
+        return self.graph[node]
+
+    def _visit(self, node):
+        self.visited[node] = True
