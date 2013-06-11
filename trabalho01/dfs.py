@@ -35,7 +35,10 @@ class DFS(object):
         self.path.append(node)
 
     def _node_not_visited(self, node):
-        return not self.visited[node]
+        try:
+            return not self.visited[node]
+        except KeyError:
+            node, 'key is not defined'
 
     def _neighbours(self, node):
         return self.graph[node]

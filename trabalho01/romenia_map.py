@@ -11,5 +11,7 @@ ROMENIA = {
     'Mehadia': {'Lugoj': 70, 'Dobreta': 75},
     'Dobreta': {'Mehadia': 75, 'Craiova': 120},
     'Craiova': {'Pitesti': 138, 'Rimnicu Vilcea': 146, 'Dobreta': 120},
-    'Pitesti': {'Bucharest': 101, 'Rimnicu Vilcea': 97, 'Craiova': 138}
+    'Pitesti': {'Bucharest': 101, 'Rimnicu Vilcea': 97, 'Craiova': 138},
+    'Urziceni': {},
+    'Giurgiu': {}
 }

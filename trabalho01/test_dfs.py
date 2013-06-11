@@ -10,6 +10,10 @@ class TestDepthFirstSearch(unittest.TestCase):
     def test_dfs_search_success(self):
         self.assertEqual('Bucharest', self.dfs.search('Bucharest'))
 
+    def test_dfs_search_failure(self):
+        target = 'Catalao'
+        self.assertEqual('{0} Not Found'.format(target), self.dfs.search(target))
+
     def test_get_path_success(self):
         path_expected = ['Arad', 'Sibiu', 'Rimnicu Vilcea', 'Pitesti',
                         'Craiova', 'Dobreta', 'Mehadia', 'Lugoj', 'Timisoara']
